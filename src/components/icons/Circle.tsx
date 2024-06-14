@@ -26,7 +26,7 @@ const Circle: React.FC<Props> = ({
       fill="none"
       viewBox="0 0 24 24"
       stroke={color}
-      className={`${size}`}
+      className={size}
       onClick={onClick}
     >
       <circle r="8" cx="12" cy="12" fill={color} />

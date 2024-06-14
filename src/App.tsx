@@ -5,35 +5,57 @@ import Circle from './components/icons/Circle';
 import Pause from './components/icons/Pause';
 import Play from './components/icons/Play';
 import RightChevron from './components/icons/RightChevron';
+import SpeakerMuted from './components/icons/SpeakerMuted';
+import SpeakerWave from './components/icons/SpeakerWave';
 import { audioId, fetchedData, videoId } from './utilities/constants';
 import { getMedia } from './utilities/helpers';
 
 function App() {
-  const [slideLocation, setSlideLocation] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [slideLocation, setSlideLocation] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const [audio, video] = getMedia(audioId, videoId);
 
     if (isPlaying) {
       // Audio is finished, video is not finished
-      if (audio.currentTime === audio.duration && video.currentTime !== video.duration) {
-        video.play()
-      } 
+      if (
+        audio.currentTime === audio.duration &&
+        video.currentTime !== video.duration
+      ) {
+        video.play();
+      }
       // Audio is not finished, video is finished
-      else if (audio.currentTime !== audio.duration && video.currentTime === video.duration) {
-        audio.play()
+      else if (
+        audio.currentTime !== audio.duration &&
+        video.currentTime === video.duration
+      ) {
+        audio.play();
       } else {
-        audio.play()
-        video.play()
+        audio.play();
+        video.play();
       }
     } else {
-      audio.pause()
-      video.pause()
+      audio.pause();
+      video.pause();
     }
   }, [slideLocation, isPlaying]);
 
   // ---- Helpers
+  const handlePlayPause = () => {
+    const [audio, video] = getMedia(audioId, videoId);
+    // TODO extra logic if for whichever is longer not to play from the start while the other media is finishing
+    if (!isPlaying) {
+      audio.play();
+      video.play();
+      setIsPlaying(true);
+    } else {
+      audio.pause();
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
   const mediaPlaybackEnded = () => {
     const [audio, video] = getMedia(audioId, videoId);
     const longestDuration =
@@ -106,7 +128,7 @@ function App() {
             <RightChevron onClick={slideForward} />
           </div>
           <div className="flex items-center gap-x-5 m-5 z-10">
-            <p onClick={() => setIsPlaying(!isPlaying)}>
+            <p onClick={handlePlayPause}>
               {isPlaying ? <Pause size="size-10" /> : <Play size="size-10" />}
             </p>
           </div>
