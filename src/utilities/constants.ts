@@ -12,7 +12,4 @@ export const fetchedData = [
 export const audioId = 'audioPlayer';
 export const videoId = 'videoPlayer';
 
-// SVG Constants
-export const svgDefaultSize = 'size-6';
-
 export {};

@@ -1,6 +1,4 @@
-interface Props {
-  size?: string;
-}
+import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
  * A u-turn arrow SVG icon.
@@ -11,7 +9,7 @@ interface Props {
  * @example
  * <ArrowUTurn size="size-12" />
  */
-const ArrowUTurn: React.FC<Props> = ({ size = 'size-8' }) => {
+const ArrowUTurn: React.FC<SvgIconProps> = ({ size = 'size-8' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

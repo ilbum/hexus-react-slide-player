@@ -1,8 +1,4 @@
-interface Props {
-  color?: string;
-  onClick?: () => void;
-  size?: string;
-}
+import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
  * For rendering a circle SVG icon.
@@ -15,7 +11,7 @@ interface Props {
  * @example
  * <Circle size="size-12" />
  */
-const Circle: React.FC<Props> = ({
+const Circle: React.FC<SvgIconProps> = ({
   color = 'currentColor',
   onClick,
   size = 'size-4',

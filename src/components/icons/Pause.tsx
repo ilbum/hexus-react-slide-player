@@ -1,4 +1,4 @@
-import { svgDefaultSize } from '../../utilities/constants';
+import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
  * For rendering a pause button SVG icon.
@@ -9,7 +9,7 @@ import { svgDefaultSize } from '../../utilities/constants';
  * @example
  * <Pause size="size-12" />
  */
-export default function Pause({ size = svgDefaultSize }) {
+const Pause: React.FC<SvgIconProps> = ({ size = 'size-10' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,6 @@ export default function Pause({ size = svgDefaultSize }) {
       />
     </svg>
   );
-}
+};
+
+export default Pause;

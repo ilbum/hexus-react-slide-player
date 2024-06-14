@@ -1,4 +1,4 @@
-import { svgDefaultSize } from '../../utilities/constants';
+import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
  * For rendering a play button SVG icon.
@@ -9,7 +9,7 @@ import { svgDefaultSize } from '../../utilities/constants';
  * @example
  * <Play size="size-12" />
  */
-export default function Play({ size = svgDefaultSize }) {
+const Play: React.FC<SvgIconProps> = ({ size = 'size-10' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,6 @@ export default function Play({ size = svgDefaultSize }) {
       />
     </svg>
   );
-}
+};
+
+export default Play;

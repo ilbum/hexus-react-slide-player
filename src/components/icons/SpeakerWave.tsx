@@ -1,6 +1,4 @@
-interface Props {
-  size?: string;
-}
+import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
  * For rendering a circle SVG icon.
@@ -13,7 +11,7 @@ interface Props {
  * @example
  * <Circle size="size-12" />
  */
-const SpeakerWave: React.FC<Props> = ({ size = 'size-8' }) => {
+const SpeakerWave: React.FC<SvgIconProps> = ({ size = 'size-8' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

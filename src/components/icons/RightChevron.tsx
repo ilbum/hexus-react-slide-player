@@ -1,10 +1,4 @@
-import { svgDefaultSize } from '../../utilities/constants';
-
-interface Props {
-  flipHorizontal?: boolean;
-  onClick?: () => void;
-  size?: string;
-}
+import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
  * For rendering a right arrow SVG icon.
@@ -17,10 +11,10 @@ interface Props {
  * @example
  * <RightArrow size="size-12" />
  */
-const RightChevron: React.FC<Props> = ({
+const RightChevron: React.FC<SvgIconProps> = ({
   onClick,
   flipHorizontal = false,
-  size = svgDefaultSize,
+  size = 'size-6',
 }) => {
   return (
     <svg

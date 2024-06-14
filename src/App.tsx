@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import ControlsSecondSection from './ControlsSecondSection';
+import ControlsFirstSection from './components/ControlsFirstSection';
+import ControlsRow from './components/ControlsRow';
 import Header from './components/Header';
+import ArrowUTurn from './components/icons/ArrowUTurn';
 import Circle from './components/icons/Circle';
 import Pause from './components/icons/Pause';
 import Play from './components/icons/Play';
@@ -9,14 +13,13 @@ import SpeakerMuted from './components/icons/SpeakerMuted';
 import SpeakerWave from './components/icons/SpeakerWave';
 import { audioId, fetchedData, videoId } from './utilities/constants';
 import { getMedia } from './utilities/helpers';
-import ArrowUTurn from './components/icons/ArrowUTurn';
 
 function App() {
   const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [slideLocation, setSlideLocation] = useState(0);
 
-  // Handle pause and play
+  // --- Media Control Logic
   useEffect(() => {
     const [audio, video] = getMedia(audioId, videoId);
 
@@ -44,12 +47,6 @@ function App() {
     }
   }, [isPlaying, slideLocation]);
 
-  const pauseAudio = () => {
-    const audio = document.getElementById(audioId) as HTMLAudioElement;
-    audio.muted = isMuted ? false : true;
-    setIsMuted(!isMuted);
-  };
-
   const mediaPlaybackEnded = () => {
     const [audio, video] = getMedia(audioId, videoId);
     const longestDuration =
@@ -63,14 +60,20 @@ function App() {
     }
   };
 
-  const restartMedia = () => {
+  const pauseAudio = () => {
+    const audio = document.getElementById(audioId) as HTMLAudioElement;
+    audio.muted = isMuted ? false : true;
+    setIsMuted(!isMuted);
+  };
+
+  const stopMedia = () => {
     const [audio, video] = getMedia(audioId, videoId);
     audio.currentTime = 0;
     video.currentTime = 0;
     setIsPlaying(false);
   };
 
-  // ---- Slide Navigation
+  // ---- Slide Navigation Logic
   const navigateToSlide = (index: number) => {
     setSlideLocation(index);
   };
@@ -118,9 +121,8 @@ function App() {
           </div>
         </div>
 
-        {/* Controls */}
-        <div className="flex flex-wrap-reverse justify-between min-w-full">
-          <div className="flex items-center gap-x-10 m-5 z-10">
+        <ControlsRow>
+          <ControlsFirstSection>
             <RightChevron flipHorizontal={true} onClick={slideBackward} />
             {fetchedData.map((slide, index) => (
               <Circle
@@ -130,23 +132,19 @@ function App() {
               />
             ))}
             <RightChevron onClick={slideForward} />
-          </div>
-          <div className="flex items-center gap-x-7 m-5 z-10">
-            <p onClick={restartMedia}>
+          </ControlsFirstSection>
+          <ControlsSecondSection>
+            <p onClick={stopMedia}>
               <ArrowUTurn />
             </p>
             <p onClick={pauseAudio}>
-              {isMuted ? (
-                <SpeakerMuted size="size-8" />
-              ) : (
-                <SpeakerWave size="size-8" />
-              )}
+              {isMuted ? <SpeakerMuted /> : <SpeakerWave />}
             </p>
             <p onClick={() => setIsPlaying(!isPlaying)}>
-              {isPlaying ? <Pause size="size-10" /> : <Play size="size-10" />}
+              {isPlaying ? <Pause /> : <Play />}
             </p>
-          </div>
-        </div>
+          </ControlsSecondSection>
+        </ControlsRow>
       </main>
     </div>
   );
