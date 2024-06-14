@@ -3,7 +3,7 @@ export default function Header() {
     <div className="flex justify-between items-center font-mono text-sm bg-gradient-to-r from-purple-500 to-pink-500 min-w-full">
       <p className="m-5">
         Created by&nbsp;
-        <code className="font-mono font-bold">Ilbum Kwak</code>
+        <code className="font-bold">Ilbum Kwak</code>
       </p>
       <div className="m-5">
         <a
