@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import ControlsSecondSection from './ControlsSecondSection';
+import ControlsSecondSection from './components/ControlsSecondSection';
 import ControlsFirstSection from './components/ControlsFirstSection';
 import ControlsRow from './components/ControlsRow';
 import Header from './components/Header';

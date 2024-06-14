@@ -1,7 +1,7 @@
 import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
- * For rendering a pause button SVG icon.
+ * A pause button SVG icon.
  *
  * @param size resizing class for the SVG icon.
  * @returns React right arrow SVG component.

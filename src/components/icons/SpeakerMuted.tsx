@@ -1,15 +1,13 @@
 import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
- * For rendering a circle SVG icon.
+ * A speaker muted SVG icon.
  *
- * @param color default inherits the 'currentColor'
- * @param onClick click handler function
  * @param size resizing class for the SVG icon.
  * @returns React arrow SVG component.
  *
  * @example
- * <Circle size="size-12" />
+ * <SpeakerMuted size="size-12" />
  */
 const SpeakerMuted: React.FC<SvgIconProps> = ({ size = 'size-8' }) => {
   return (

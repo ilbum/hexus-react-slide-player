@@ -1,7 +1,7 @@
 import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
- * For rendering a right arrow SVG icon.
+ * A right chevron SVG icon.
  *
  * @param flipHorizontal flip the arrow horizontally
  * @param onClick click handler function
@@ -9,7 +9,7 @@ import { SvgIconProps } from '../../interfaces/SvgIconProps';
  * @returns React arrow SVG component.
  *
  * @example
- * <RightArrow size="size-12" />
+ * <RightChevron size="size-12" />
  */
 const RightChevron: React.FC<SvgIconProps> = ({
   onClick,

@@ -1,7 +1,7 @@
 import { SvgIconProps } from '../../interfaces/SvgIconProps';
 
 /**
- * For rendering a circle SVG icon.
+ * A circle SVG icon.
  *
  * @param color default inherits the 'currentColor'
  * @param onClick click handler function
