@@ -1,5 +1,12 @@
 // Data
-export const fetchedData = ['lemon', 'graph-up', 'wolf'];
+export const fetchedData = [
+  'laptop',
+  'lemon',
+  'record',
+  'graph-up',
+  'wolf',
+  'thank-you',
+];
 
 // App Constants
 export const audioId = 'audioPlayer';

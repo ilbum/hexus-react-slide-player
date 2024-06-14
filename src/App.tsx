@@ -71,7 +71,6 @@ function App() {
         onEnded={() => mediaPlaybackEnded()}
         src={`./audio/${fetchedData[slideLocation]}.m4a`}
       ></audio>
-      {/* TOOD slide styling */}
       <main className="App-main flex-col justify-between">
         <div className="flex-col justify-start min-w-full">
           <Header />
@@ -80,7 +79,7 @@ function App() {
             id="videoContainer"
           >
             <video
-              className="w-full"
+              className={`w-full App-video `}
               id={videoId}
               key={slideLocation}
               muted
