@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
+import Circle from './components/icons/Circle';
 import Pause from './components/icons/Pause';
 import Play from './components/icons/Play';
 import RightChevron from './components/icons/RightChevron';
 import { audioId, fetchedData, videoId } from './utilities/constants';
 import { getMedia } from './utilities/helpers';
-import Circle from './components/icons/Circle';
 
 function App() {
   const [slideLocation, setSlideLocation] = useState(0);
@@ -71,7 +71,8 @@ function App() {
         onEnded={() => mediaPlaybackEnded()}
         src={`./audio/${fetchedData[slideLocation]}.m4a`}
       ></audio>
-      <main className="App-main flex-col justify-between">
+
+      <main className="main flex-col justify-between">
         <div className="flex-col justify-start min-w-full">
           <Header />
           <div
