@@ -1,4 +1,4 @@
-export default function Header() {
+const Header: React.FC = () => {
   return (
     <div className="flex justify-between items-center font-mono text-sm bg-gradient-to-r from-purple-500 to-pink-500 min-w-full">
       <p className="m-5">
@@ -17,4 +17,6 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+
+export default Header;

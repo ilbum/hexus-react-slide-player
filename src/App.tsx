@@ -92,12 +92,6 @@ function App() {
 
   return (
     <div className="App">
-      <audio
-        id={audioId}
-        onEnded={() => mediaPlaybackEnded()}
-        src={`./audio/${fetchedData[slideLocation]}.m4a`}
-      ></audio>
-
       <main className="main flex-col justify-between">
         <div className="flex-col justify-start min-w-full">
           <Header />
@@ -146,6 +140,12 @@ function App() {
           </ControlsSecondSection>
         </ControlsRow>
       </main>
+
+      <audio
+        id={audioId}
+        onEnded={() => mediaPlaybackEnded()}
+        src={`./audio/${fetchedData[slideLocation]}.m4a`}
+      ></audio>
     </div>
   );
 }
