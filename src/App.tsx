@@ -9,6 +9,7 @@ import SpeakerMuted from './components/icons/SpeakerMuted';
 import SpeakerWave from './components/icons/SpeakerWave';
 import { audioId, fetchedData, videoId } from './utilities/constants';
 import { getMedia } from './utilities/helpers';
+import ArrowUTurn from './components/icons/ArrowUTurn';
 
 function App() {
   const [isMuted, setIsMuted] = useState(false);
@@ -43,7 +44,7 @@ function App() {
     }
   }, [isPlaying, slideLocation]);
 
-  const handleAudio = () => {
+  const pauseAudio = () => {
     const audio = document.getElementById(audioId) as HTMLAudioElement;
     audio.muted = isMuted ? false : true;
     setIsMuted(!isMuted);
@@ -60,6 +61,13 @@ function App() {
         setSlideLocation(slideLocation + 1);
       }
     }
+  };
+
+  const restartMedia = () => {
+    const [audio, video] = getMedia(audioId, videoId);
+    audio.currentTime = 0;
+    video.currentTime = 0;
+    setIsPlaying(false);
   };
 
   // ---- Slide Navigation
@@ -110,7 +118,8 @@ function App() {
           </div>
         </div>
 
-        <div className="flex justify-between min-w-full">
+        {/* Controls */}
+        <div className="flex flex-wrap-reverse justify-between min-w-full">
           <div className="flex items-center gap-x-10 m-5 z-10">
             <RightChevron flipHorizontal={true} onClick={slideBackward} />
             {fetchedData.map((slide, index) => (
@@ -122,8 +131,11 @@ function App() {
             ))}
             <RightChevron onClick={slideForward} />
           </div>
-          <div className="flex items-center gap-x-5 m-5 z-10">
-            <p onClick={handleAudio}>
+          <div className="flex items-center gap-x-7 m-5 z-10">
+            <p onClick={restartMedia}>
+              <ArrowUTurn />
+            </p>
+            <p onClick={pauseAudio}>
               {isMuted ? (
                 <SpeakerMuted size="size-8" />
               ) : (
