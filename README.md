@@ -4,6 +4,8 @@ This is a **Slide Player** assignment for **Hexus AI** bootstrapped with Create 
 
 ## Features
 
+https://github.com/ilbum/hexus-react-slide-player/assets/39973347/9f6dcfa7-0b8b-4ae8-b70b-b138f0d8999d
+
 - Video and audio channel playback
 - Slide navigation
 - Slide transition animations
