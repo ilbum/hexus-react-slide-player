@@ -4,7 +4,7 @@ This is a **Slide Player** assignment for **Hexus AI** bootstrapped with Create 
 
 ## Features
 
-- Separate video and audio playback
+- Video and audio channel playback
 - Slide navigation
 - Slide transition animations
 - Play, pause, mute, and restart
