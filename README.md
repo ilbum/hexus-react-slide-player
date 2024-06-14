@@ -2,15 +2,12 @@
 
 This is a **Slide Player** assignment for **Hexus AI** bootstrapped with Create React App.
 
-## TODOs
+## Features
 
-- [x] Video playback
-- [x] Audio playback
-- [x] Match duration
-- [x] Slide navigation
-- [x] Flickering
-- [ ] Additional Controls, include controls to start, pause, stop, and adjust the volume of audio playback.
-- [x] Progress bar
+- Separate video and audio playback
+- Slide navigation
+- Slide transition animations
+- Play, pause, mute, and restart
 
 ## Available Scripts
 
