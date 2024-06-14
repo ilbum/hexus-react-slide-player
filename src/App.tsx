@@ -11,9 +11,11 @@ import { audioId, fetchedData, videoId } from './utilities/constants';
 import { getMedia } from './utilities/helpers';
 
 function App() {
-  const [slideLocation, setSlideLocation] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [slideLocation, setSlideLocation] = useState(0);
 
+  // Handle pause and play
   useEffect(() => {
     const [audio, video] = getMedia(audioId, videoId);
 
@@ -39,21 +41,12 @@ function App() {
       audio.pause();
       video.pause();
     }
-  }, [slideLocation, isPlaying]);
+  }, [isPlaying, slideLocation]);
 
-  // ---- Helpers
-  const handlePlayPause = () => {
-    const [audio, video] = getMedia(audioId, videoId);
-    // TODO extra logic if for whichever is longer not to play from the start while the other media is finishing
-    if (!isPlaying) {
-      audio.play();
-      video.play();
-      setIsPlaying(true);
-    } else {
-      audio.pause();
-      video.pause();
-      setIsPlaying(false);
-    }
+  const handleAudio = () => {
+    const audio = document.getElementById(audioId) as HTMLAudioElement;
+    audio.muted = isMuted ? false : true;
+    setIsMuted(!isMuted);
   };
 
   const mediaPlaybackEnded = () => {
@@ -70,18 +63,20 @@ function App() {
   };
 
   // ---- Slide Navigation
+  const navigateToSlide = (index: number) => {
+    setSlideLocation(index);
+  };
+
   const slideBackward = () => {
     if (slideLocation > 0) {
       setSlideLocation(slideLocation - 1);
     }
   };
+
   const slideForward = () => {
     if (fetchedData.length > slideLocation + 1) {
       setSlideLocation(slideLocation + 1);
     }
-  };
-  const setSlide = (index: number) => {
-    setSlideLocation(index);
   };
 
   return (
@@ -122,13 +117,20 @@ function App() {
               <Circle
                 color={slideLocation === index ? 'currentColor' : 'gray'}
                 key={slide}
-                onClick={() => setSlide(index)}
+                onClick={() => navigateToSlide(index)}
               />
             ))}
             <RightChevron onClick={slideForward} />
           </div>
           <div className="flex items-center gap-x-5 m-5 z-10">
-            <p onClick={handlePlayPause}>
+            <p onClick={handleAudio}>
+              {isMuted ? (
+                <SpeakerMuted size="size-8" />
+              ) : (
+                <SpeakerWave size="size-8" />
+              )}
+            </p>
+            <p onClick={() => setIsPlaying(!isPlaying)}>
               {isPlaying ? <Pause size="size-10" /> : <Play size="size-10" />}
             </p>
           </div>
