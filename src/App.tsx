@@ -1,35 +1,25 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Pause from './components/icons/Pause';
 import Play from './components/icons/Play';
-import RightArrow from './components/icons/RightArrow';
+import RightChevron from './components/icons/RightChevron';
 import { audioId, fetchedData, videoId } from './utilities/constants';
 import { getMedia } from './utilities/helpers';
+import Circle from './components/icons/Circle';
 
 function App() {
   const [slideLocation, setSlideLocation] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [videoContainerHeight, setVideoContainerHeight] = useState(0);
-
-  const ref = useRef<HTMLVideoElement>(null!);
 
   useEffect(() => {
-    // Prevent height 'flickering' from resize and rerendering
-    const divVideoContainer = ref.current;
-    setVideoContainerHeight(divVideoContainer.offsetHeight);
-    console.log(
-      `divVideoContainer.offsetHeight`,
-      divVideoContainer.offsetHeight
-    );
-
     const [audio, video] = getMedia(audioId, videoId);
     // 'isPlaying' used to prevent error 'user didn't interact with the document first. https://goo.gl/xX8pDD'
     if (isPlaying) {
       audio.play();
       video.play();
     }
-  }, [slideLocation, isPlaying, videoContainerHeight]);
+  }, [slideLocation, isPlaying]);
 
   // ---- Helpers
   const handlePlayPause = () => {
@@ -70,6 +60,9 @@ function App() {
       setSlideLocation(slideLocation + 1);
     }
   };
+  const setSlide = (index: number) => {
+    setSlideLocation(index);
+  };
 
   return (
     <div className="App">
@@ -80,32 +73,44 @@ function App() {
       ></audio>
       {/* TOOD slide styling */}
       <main className="App-main flex-col justify-between">
-        <Header />
-        <div className="flex-col justify-start z-0" id="videoContainer">
-          <video
-            ref={ref}
-            // className="w-full"
-            id={videoId}
-            key={slideLocation}
-            muted
-            onEnded={() => mediaPlaybackEnded()}
-            playsInline
-            // style={{ minHeight: 100 }}
+        <div className="flex-col justify-start min-w-full">
+          <Header />
+          <div
+            className="flex-col justify-start z-0 min-w-full"
+            id="videoContainer"
           >
-            <source
-              src={`./videos/${fetchedData[slideLocation]}.mp4`}
-              type="video/mp4"
-            />
-          </video>
-        </div>
-        <div className="flex-col">
-          <div className="flex justify-center gap-x-10 m-5 z-10">
-            <RightArrow flipHorizontal={true} onClick={slideBackward} />
-            <p onClick={handlePlayPause}>{isPlaying ? <Pause /> : <Play />}</p>
-            <RightArrow onClick={slideForward} />
+            <video
+              className="w-full"
+              id={videoId}
+              key={slideLocation}
+              muted
+              onEnded={() => mediaPlaybackEnded()}
+              playsInline
+            >
+              <source
+                src={`./videos/${fetchedData[slideLocation]}.mp4`}
+                type="video/mp4"
+              />
+            </video>
           </div>
-          <div className="flex justify-center gap-x-10 m-5 z-10">
-            {/* TODO slider */}
+        </div>
+
+        <div className="flex justify-between min-w-full">
+          <div className="flex items-center gap-x-10 m-5 z-10">
+            <RightChevron flipHorizontal={true} onClick={slideBackward} />
+            {fetchedData.map((slide, index) => (
+              <Circle
+                color={slideLocation === index ? 'currentColor' : 'gray'}
+                key={slide}
+                onClick={() => setSlide(index)}
+              />
+            ))}
+            <RightChevron onClick={slideForward} />
+          </div>
+          <div className="flex items-center gap-x-5 m-5 z-10">
+            <p onClick={handlePlayPause}>
+              {isPlaying ? <Pause size="size-10" /> : <Play size="size-10" />}
+            </p>
           </div>
         </div>
       </main>

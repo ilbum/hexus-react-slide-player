@@ -10,14 +10,14 @@ interface Props {
  * For rendering a right arrow SVG icon.
  *
  * @param flipHorizontal flip the arrow horizontally
- * @param handleClick click handler function
+ * @param onClick click handler function
  * @param size resizing class for the SVG icon.
  * @returns React arrow SVG component.
  *
  * @example
  * <RightArrow size="size-12" />
  */
-const RightArrow: React.FC<Props> = ({
+const RightChevron: React.FC<Props> = ({
   onClick,
   flipHorizontal = false,
   size = svgDefaultSize,
@@ -41,4 +41,4 @@ const RightArrow: React.FC<Props> = ({
   );
 };
 
-export default RightArrow;
+export default RightChevron;
